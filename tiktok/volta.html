@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login do TikTok</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+<main>
+  <header><div class="logo"></div><b>Corte Neon GTA</b></header>
+  <h1 id="tit">Login do TikTok</h1>
+  <p id="txt">Copie o link abaixo e cole no painel, no campo "Concluir login do TikTok".</p>
+  <div class="url" id="url"></div>
+  <button id="bt">Copiar link</button>
+  <p class="mut">O código vale por poucos minutos e só funciona uma vez. Esta página não guarda nem envia nada.</p>
+</main>
+<script>
+  var u = location.href, q = new URLSearchParams(location.search);
+  document.getElementById("url").textContent = u;
+  if (q.get("error")) {
+    document.getElementById("tit").textContent = "Login cancelado";
+    document.getElementById("txt").textContent = "O TikTok respondeu: " + (q.get("error_description") || q.get("error"));
+  }
+  document.getElementById("bt").onclick = function () {
+    navigator.clipboard.writeText(u).then(function () { document.getElementById("bt").textContent = "Copiado!"; });
+  };
+</script>
+</body>
+</html>
